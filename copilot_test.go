@@ -16,8 +16,14 @@ import "testing"
 // 0  == solution([8,0,6,7], -3, -8)
 
 func solution(arr []int, index int, defaultValue int) int {
+	if len(arr) == 0 {
+		return defaultValue
+	}
 	if index < 0 {
 		index = len(arr) + index
+		if index < 0 {
+			return defaultValue
+		}
 	}
 	if index >= len(arr) {
 		return defaultValue
