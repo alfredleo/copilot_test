@@ -14,7 +14,8 @@
 // 0  == solution([8,0,6,7], -3, -8)
 
 // wrote: function solution
-function solution($array, $index, $default) {
+function solution($array, $index, $default)
+{
     if (isset($array[$index])) {
         return $array[$index];
     } else {
@@ -23,10 +24,10 @@ function solution($array, $index, $default) {
 }
 
 // test solution
-echo solution([1,2,3], 1, 10) . PHP_EOL;
-echo solution([1,2,3], 5, 10) . PHP_EOL;
-echo solution([1,2,3], -1, 10) . PHP_EOL;
-echo solution([1,2,3], -5, 10) . PHP_EOL;
-echo solution([1,-5,4,2], 0, 0) . PHP_EOL;
-echo solution([8,0,6,7], -3, -8) . PHP_EOL;
+echo assert(solution([1, 2, 3], 1, 10) === 2) . PHP_EOL;
+echo assert(solution([1, 2, 3], 5, 10) === 10) . PHP_EOL;
+echo assert(solution([1, 2, 3], -1, 10) === 3) . PHP_EOL;
+echo assert(solution([1, 2, 3], -5, 10) === 10) . PHP_EOL;
+echo assert(solution([1, -5, 4, 2], 0, 0) === 1) . PHP_EOL;
+echo assert(solution([8, 0, 6, 7], -3, -8) === 0) . PHP_EOL;
 
