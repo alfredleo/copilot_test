@@ -13,7 +13,7 @@
 // 1  == solution([1,-5,4,2], 0, 0)
 // 0  == solution([8,0,6,7], -3, -8)
 
-
+// wrote: function solution
 function solution($array, $index, $default) {
     if (isset($array[$index])) {
         return $array[$index];
