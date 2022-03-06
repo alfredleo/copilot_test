@@ -18,6 +18,8 @@ function solution($array, $index, $default)
 {
     if (isset($array[$index])) {
         return $array[$index];
+    } elseif (isset($array[count($array) + $index])) {
+        return $array[count($array) + $index];
     } else {
         return $default;
     }
