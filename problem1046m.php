@@ -9,21 +9,50 @@
 //
 // As another example, given the string "google", you should return "elgoogle".
 
+
+// 1. Find inner largest palindrome in the given string, if none found return first letter
+function largestPalindrome(string $str) {
+    $len = strlen($str);
+    $max = 0;
+    $max_start = 0;
+    $max_end = 0;
+    for ($i = 0; $i < $len; $i++) {
+        $start = $i;
+        $end = $i;
+        while ($start >= 0 && $end < $len && $str[$start] === $str[$end]) {
+            $start--;
+            $end++;
+        }
+        $start++;
+        $end--;
+        $len_palindrome = $end - $start + 1;
+        if ($len_palindrome > $max) {
+            $max = $len_palindrome;
+            $max_start = $start;
+            $max_end = $end;
+        }
+    }
+    return substr($str, $max_start, $max);
+}
+
+
 /**
  * @param $str string
  * @return string
  */
-function findPalindromeInsertingFewestChars($str): string
+function findPalindromeInsertingFewestChars(string $str): string
 {
     $strLen = strlen($str);
     $palindromes = [];
     for ($i = 0; $i < $strLen; $i++) {
         for ($j = $i + 1; $j <= $strLen; $j++) {
             $subStr = substr($str, $i, $j);
+//            echo $subStr . PHP_EOL;
             if (isPalindrome($subStr)) {
                 $palindromes[] = $subStr;
             }
         }
+//        echo PHP_EOL;
     }
     sort($palindromes);
     return $palindromes[0];
@@ -41,6 +70,7 @@ function isPalindrome(string $subStr): bool
             return false;
         }
     }
+//    echo 'palindrome: ' . $subStr . PHP_EOL;
     return true;
 }
 
@@ -51,4 +81,5 @@ assert(findPalindromeInsertingFewestChars('google') === 'elgoogle');
 assert(findPalindromeInsertingFewestChars('lo') === 'olo');
 assert(findPalindromeInsertingFewestChars('l') === 'l');
 assert(findPalindromeInsertingFewestChars('olo') === 'olo');
+assert(findPalindromeInsertingFewestChars('colo') === 'coloc'); // this is an interesting case
 
