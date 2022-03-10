@@ -26,6 +26,6 @@ package main
 //   d.set(1, 2, 0) # set key 1 to value 2 at time 0
 //   d.get(1, 0) # get key 1 at time 0 should be 2
 
-func main() {
+func main1() {
 
 }

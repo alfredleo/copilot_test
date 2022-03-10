@@ -77,7 +77,7 @@ func GetRepos(username string) []string {
 	}
 	defer resp.Body.Close()
 	var repos []string
-	ray.Ray(resp.Body)
+	// ray.Ray(resp.Body)
 	if err := json.NewDecoder(resp.Body).Decode(&repos); err != nil {
 		log.Fatal(err)
 	}
