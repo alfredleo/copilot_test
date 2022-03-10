@@ -1,9 +1,12 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/octoper/go-ray"
+	"log"
 	"math/rand"
+	"net/http"
 	"strings"
 	"time"
 )
@@ -60,5 +63,23 @@ func main() {
 	}
 
 	e.LeavesRemaining()
-	ray.Ray(employees[4])
+	//ray.Ray(employees[4])
+	ray.Ray(GetRepos("alfredleo"))
+}
+
+// GetRepos write a function that takes a string as a username in GitHub.com and returns public repositories
+// example: GetRepos("alfredleo") returns a slice of strings with the names of the user's public repositories
+func GetRepos(username string) []string {
+	url := fmt.Sprintf("https://api.github.com/users/%s/repos", username)
+	resp, err := http.Get(url)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	var repos []string
+	ray.Ray(resp.Body)
+	if err := json.NewDecoder(resp.Body).Decode(&repos); err != nil {
+		log.Fatal(err)
+	}
+	return repos
 }
